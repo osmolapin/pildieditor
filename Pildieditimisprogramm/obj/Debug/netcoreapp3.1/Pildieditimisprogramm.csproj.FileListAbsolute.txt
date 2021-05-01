@@ -1,0 +1,15 @@
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\bin\Debug\netcoreapp3.1\Pildieditimisprogramm.exe
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\bin\Debug\netcoreapp3.1\Pildieditimisprogramm.deps.json
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\bin\Debug\netcoreapp3.1\Pildieditimisprogramm.runtimeconfig.json
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\bin\Debug\netcoreapp3.1\Pildieditimisprogramm.runtimeconfig.dev.json
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\bin\Debug\netcoreapp3.1\Pildieditimisprogramm.dll
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\bin\Debug\netcoreapp3.1\Pildieditimisprogramm.pdb
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\obj\Debug\netcoreapp3.1\Pildieditimisprogramm.Form1.resources
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\obj\Debug\netcoreapp3.1\Pildieditimisprogramm.csproj.GenerateResource.cache
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\obj\Debug\netcoreapp3.1\Pildieditimisprogramm.AssemblyInfoInputs.cache
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\obj\Debug\netcoreapp3.1\Pildieditimisprogramm.AssemblyInfo.cs
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\obj\Debug\netcoreapp3.1\Pildieditimisprogramm.csproj.CoreCompileInputs.cache
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\obj\Debug\netcoreapp3.1\Pildieditimisprogramm.dll
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\obj\Debug\netcoreapp3.1\Pildieditimisprogramm.pdb
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\obj\Debug\netcoreapp3.1\Pildieditimisprogramm.genruntimeconfig.cache
+C:\Users\osmol\source\repos\Pildieditimisprogramm\Pildieditimisprogramm\obj\Debug\netcoreapp3.1\Pildieditimisprogramm.csprojAssemblyReference.cache
