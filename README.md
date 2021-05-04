@@ -11,13 +11,14 @@
 - Y suuruse ära jättes arvutab programm ise sobiva Y suuruse, et pilt säilitaks oma kuju (X peab olema olemas)
 
 ## Käivitamine/kompileerimine
-- Tõmmatud zip failis on exe-fail mida avades avaneb programm
+- Tõmmatud .zip failis on .exe fail mida avades avaneb programm
 - Exe faili asukoht kaustas on: "Pildieditimisprogramm\bin\Debug\netcoreapp3.1"
 
 
 ![logo](https://i.imgur.com/aJ5ojDt.png)
 
 - Programmi on võimalik kompileerida VS 2019-is
+- .sln fail peab olema "Pildieditimisprogramm"-iga samas kaustas (mitte "Pildieditimisprogramm"-i kausta sees)
 - Tuleb avada .sln fail ning Build alt vajutada "Build Solution"
 
 ![logo](https://i.imgur.com/X28EN7d.png)
