@@ -16,5 +16,5 @@
 
 ![logo](https://i.imgur.com/X28EN7d.png)
 
-# Tulekul
+# Uuendused
 - Ühe pidli heleduse reaalajas redigeerimine
