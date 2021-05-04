@@ -1,11 +1,15 @@
-# Version 1.0
+# Photon
 
-# Funktsioonid
+![image](https://user-images.githubusercontent.com/48165006/117047538-aab9f280-ad1a-11eb-92fb-aaf119347740.png)
+
+## Version 1.0
+
+## Funktsioonid
 - Ühe/mitme pidli heleduse ja resolutsiooni redigeerimine 
 - Ühe pildi redigeerimisel näidatakse pilti ennast
 - Pildid salvestatakse programmiga samasse kausta
 
-# Käivitamine/kompileerimine
+## Käivitamine/kompileerimine
 - Tõmmatud zip failis on exe-fail mida avades avaneb programm
 - Exe faili asukoht kaustas on: "Pildieditimisprogramm\bin\Debug\netcoreapp3.1"
 
@@ -17,5 +21,5 @@
 
 ![logo](https://i.imgur.com/X28EN7d.png)
 
-# Tulekul uuendused
+## Tulekul uuendused
 - Ühe pidli heleduse reaalajas redigeerimine
