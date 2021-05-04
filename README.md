@@ -3,6 +3,7 @@
 # Funktsioonid
 - Ühe/mitme pidli heleduse ja resolutsiooni redigeerimine 
 - Ühe pildi redigeerimisel näidatakse pilti ennast
+- Pildid salvestatakse programmiga samasse kausta
 
 # Käivitamine/kompileerimine
 - Tõmmatud zip failis on exe-fail mida avades avaneb programm
