@@ -13,6 +13,7 @@
 ## Käivitamine/kompileerimine
 - Tõmmatud .zip failis on .exe fail mida avades avaneb programm
 - Exe faili asukoht kaustas on: "Pildieditimisprogramm\bin\Debug\netcoreapp3.1"
+### KÕIK FAILID MIS PROGRAMMIGA "NETCOREAPP3.1" KAUSTAS ON PEAVAD PROGRAMMINGA (.EXE FAIL) KAASAS KÄIMA
 
 
 ![logo](https://i.imgur.com/aJ5ojDt.png)
