@@ -8,6 +8,7 @@
 - Ühe/mitme pidli heleduse ja resolutsiooni redigeerimine 
 - Ühe pildi redigeerimisel näidatakse pilti ennast
 - Pildid salvestatakse programmiga samasse kausta
+- Y suuruse ära jättes arvutab programm ise sobiva Y suuruse, et pilt säilitaks oma kuju (X peab olema olemas)
 
 ## Käivitamine/kompileerimine
 - Tõmmatud zip failis on exe-fail mida avades avaneb programm
