@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace Pildieditimisprogramm
 {
@@ -18,6 +20,7 @@ namespace Pildieditimisprogramm
         bool havePic = false; //Kontrolliks kas pilt on valitud
         bool haveMultiplePic = false; //Kontrolliks kas mitu pilti on valitud "havePic" on false siis
         bool haveToConvert = false;
+        int counter;
 
         public Form1()
         {
@@ -28,36 +31,68 @@ namespace Pildieditimisprogramm
         //local string picture - pildi faili asukoht
         private void BtnSelect_Click(object sender, EventArgs e)
         {
-            int counter = 0;
+            xResInput.Text = null;
+            yResInput.Text = null;
+
+
             if (openFileDialog1.ShowDialog() == DialogResult.OK) 
             {
+                listBox1.Items.Clear();
+                counter = 0;
+
+                havePic = false;
+                haveMultiplePic = false;
+
+                //Loetakse kokku mitu faili on valitud
                 foreach (String file in openFileDialog1.FileNames) 
                 {
                     counter++;
                 }
+                //Kui pilte on 1
+                if (counter == 1)
+                {
+                    //Asjade eest ära võtmine ja juurde panemine et saaks näidata pilti
+                    PicNotSelectedTxt.Visible = false;
+                    listBox1.Visible = false;
+                    haveMultiplePic = false;
+                    pictureBox.Visible = true;
 
-                if (counter > 1)
-                {
-                    pictureBox.ImageLocation = null;
-                    initialResolution.Text = "Piltide kuvamine ei ole võimalik kuna on valitud rohkem kui 1 pilt";
-                    initialResolution.Visible = true;
-                    havePic = false;
-                    haveMultiplePic = true;
-                }
-                else if (counter == 1)
-                {
                     string picture = openFileDialog1.FileName;
-
+                    //Salvestatakse pildi x ja y suurus
                     Image img = Image.FromFile(picture);
                     initialX = img.Width;
                     initialY = img.Height;
-
-                    pictureBox.ImageLocation = picture;
-
+                    
+                    pictureBox.ImageLocation = picture; //Kuvatakse pilti
+                    //Kuvatakse pildi x ja y resolutsioon
                     initialResolution.Text = "Pildi resolutsioon: " + initialX + "x" + initialY;  //Kuvatakse algne pildi resolutsioon
                     initialResolution.Visible = true;
+
                     havePic = true;
                 }
+                //Kui pilte on rohkem kui 1
+                else if (counter > 1)
+                {
+                    //Asjade eest ära võtmine ja juurde panemine et saaks näidata listi kus on pildid
+                    PicNotSelectedTxt.Visible = false;
+                    pictureBox.Visible = false;
+                    havePic = false;
+                    listBox1.Visible = true;
+                    //Iga pilt pannakse listbox1-te koos oma x ja y suurusega
+                    foreach (String path in openFileDialog1.FileNames)
+                    {
+                        //Faili nime eraldamine faili pathist
+                        string filename = Path.GetFileName(path);
+
+                        Image img = Image.FromFile(path);
+                        int x = img.Width;
+                        int y = img.Height;
+                        listBox1.Items.Add(filename + " " + x + "x" + y);
+                    }
+
+                    haveMultiplePic = true;
+                }
+                //Kui pilte on 0
                 else if (counter == 0) 
                 {
                     havePic = false;
@@ -65,6 +100,7 @@ namespace Pildieditimisprogramm
                 } 
             }
         }
+        //Arvutatakse puuduv y suurus ristkorrutise abil
         private int CalculateHeight(Bitmap bitmap, int widthToCalculate) 
         {
             int width = bitmap.Width;
@@ -72,30 +108,73 @@ namespace Pildieditimisprogramm
 
             return (height * widthToCalculate) / width;
         }
-        //Avatakse pilt, salvestatakse tehakse "img"-st bitmap
-        //"img"-i bitmapist tehakse koopia millele saab lisada resolutsiooni
+
+        //Muudetakse pildi heledust
+        //Isiklikult ei tea kuidas töötab
+        private Bitmap AdjustBrightness(Image image, float brightness)
+        {
+            // Make the ColorMatrix.
+            float b = brightness;
+            ColorMatrix cm = new ColorMatrix(new float[][]
+                {
+                    new float[] {b, 0, 0, 0, 0},
+                    new float[] {0, b, 0, 0, 0},
+                    new float[] {0, 0, b, 0, 0},
+                    new float[] {0, 0, 0, 1, 0},
+                    new float[] {0, 0, 0, 0, 1},
+                });
+            ImageAttributes attributes = new ImageAttributes();
+            attributes.SetColorMatrix(cm);
+
+            // Draw the image onto the new bitmap while applying the new ColorMatrix.
+            Point[] points =
+            {
+                new Point(0, 0),
+                new Point(image.Width, 0),
+                new Point(0, image.Height),
+            };
+            Rectangle rect = new Rectangle(0, 0, image.Width, image.Height);
+
+            // Make the result bitmap.
+            Bitmap bm = new Bitmap(image.Width, image.Height);
+            using (Graphics gr = Graphics.FromImage(bm))
+            {
+                gr.DrawImage(image, points, rect, GraphicsUnit.Pixel, attributes);
+            }
+
+            // Return the result.
+            return bm;
+        }
+
+        //Avatakse pilt, tehakse "img"-st bitmap
+        //"img"-i bitmapist tehakse koopia millele lisatakse soovitud resolutsioon
         //salvestatakse fail nimega "file300.jpg"
         //local string picture - pildi faili asukoht
         //bitmap - "picture" bitmap & newBitmap - "bitmap" koopia
-        //funkt. vajab sisestada -> desiredX & desiredY - salvestatava pildi resolutsioon
+        //funkt. vajab sisestada -> desiredX & desiredY - salvestatava pildi resolutsioon & counter - number mis tuleb pildi nime sisse
         private void SavePicture(Image img, int desiredX, int desiredY, int counter) 
         {
             int usedY;
-            using (Bitmap bitmap = (Bitmap)img)
+            using Bitmap bitmap = (Bitmap)img;
+
+            Bitmap colored = AdjustBrightness(bitmap, slider.Value/8.3f); //8.3 on faktor mis teeb slider.Value piisavalt väikseks et saaks kasutada AdjustBrightnessi funktsioonis
+
+            if (haveToConvert)
             {
-                if (haveToConvert)
-                {
-                    usedY = CalculateHeight(bitmap, desiredX);
-                }
-                else 
-                {
-                    usedY = desiredY;
-                }
-                using (Bitmap newBitmap = new Bitmap(bitmap, desiredX, usedY))
-                {
-                    newBitmap.Save("a" + counter + ".jpg");
-                }
+                usedY = CalculateHeight(colored, desiredX);
             }
+            else
+            {
+                usedY = desiredY;
+            }
+
+            using Bitmap newBitmap = new Bitmap(colored, desiredX, usedY);
+            newBitmap.Save("a" + counter + ".jpg");
+        }
+        //Slider pannakse tagasi algsesse asendisse
+        private void ResetSlider_Click(object sender, EventArgs e)
+        {
+            slider.Value = 10;
         }
 
         //Plidi olemasolul salvestatakse pilt soovitud resolutsiooniga
