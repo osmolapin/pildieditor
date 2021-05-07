@@ -78,6 +78,7 @@ namespace Pildieditimisprogramm
                     pictureBox.Visible = false;
                     havePic = false;
                     listBox1.Visible = true;
+                    initialResolution.Visible = false;
                     //Iga pilt pannakse listbox1-te koos oma x ja y suurusega
                     foreach (String path in openFileDialog1.FileNames)
                     {
